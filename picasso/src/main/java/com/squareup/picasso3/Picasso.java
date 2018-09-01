@@ -804,7 +804,7 @@ public class Picasso implements LifecycleObserver {
       }
 
       Stats stats = new Stats(cache);
-
+  / / Create a thread pool, there are 3 execution threads by default, will automatically switch the number of threads according to network conditions 
       Dispatcher dispatcher = new Dispatcher(context, service, HANDLER, cache, stats);
 
       return new Picasso(context, dispatcher, callFactory, unsharedCache, cache, listener,
