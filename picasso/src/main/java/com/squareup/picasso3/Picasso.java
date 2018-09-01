@@ -800,11 +800,12 @@ public class Picasso implements LifecycleObserver {
         cache = new PlatformLruCache(Utils.calculateMemoryCacheSize(context));
       }
       if (service == null) {
+        / / Create a thread pool, there are 3 execution threads by default, will automatically switch the number of threads according to network conditions 
         service = new PicassoExecutorService();
       }
-
+ / / Create stats for statistical cache, as well as cache hit rate, number of downloads, etc. 
       Stats stats = new Stats(cache);
-  / / Create a thread pool, there are 3 execution threads by default, will automatically switch the number of threads according to network conditions 
+  / / Create a dispatcher object for the scheduling of the task
       Dispatcher dispatcher = new Dispatcher(context, service, HANDLER, cache, stats);
 
       return new Picasso(context, dispatcher, callFactory, unsharedCache, cache, listener,
